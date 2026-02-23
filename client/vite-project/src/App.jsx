@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Updatepassword from "./Component/Updatepassword"
 import Navbar from "./Component/Navbar"
 import { useUser } from "./Component/Context/userContext"
+import Subject from "./Component/Subject"
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/updatepassword" element={<Updatepassword />}></Route>
+          <Route path="/subject" element={<Subject />}></Route>
         </Routes>
       </BrowserRouter>
     </>

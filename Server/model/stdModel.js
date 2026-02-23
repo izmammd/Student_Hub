@@ -1,6 +1,6 @@
 // TO CREATE A MONGOOSE WE NEED CREATE SCHEMA
 const mongoose = require("mongoose");
-
+ 
 const stdSchema = new mongoose.Schema({
     email : {type:String,required:true,unique:true},
     password : {type:String,required:true},

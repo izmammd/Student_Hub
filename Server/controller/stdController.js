@@ -178,8 +178,7 @@ const handleStdUpdatePassword = async (req, res) => {
 }
 
 const handleStdDelete = async (req,res)=>{
-    console.log("work");
-    
+    console.log("work");   
 }
 
 module.exports = { handleStdSignup, handleStdLogin, getStdDetails, handlStdUpdatename, handleStdUpdatePassword, handleStdDelete };
