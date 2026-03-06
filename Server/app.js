@@ -5,6 +5,8 @@ const stdRouter = require("./Router/stdRouter");
 const stdSubRouter = require("./Router/stdSubRouter");
 const app = express();
 const cors = require("cors");
+const trainerRouter = require("./Router/trainerRouter");
+const otpRouter = require("./Router/otpRouter");
 
 // configDotenv();
 // console.log(process.env.PORT);
@@ -23,7 +25,11 @@ app.get("/",(req,res)=>{
 
 app.use("/api/std",stdRouter)  // import and use stdRouter
 
-app.use("/api/std/subject",stdSubRouter)
+app.use("/api/std/subject",stdSubRouter);
+
+app.use("/api/trainner",trainerRouter)
+
+app.use("/api/otp",otpRouter)
 
 app.listen(3000, ()=>{
     console.log(`server is Running on http://localhost:3000`);

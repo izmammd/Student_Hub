@@ -16,16 +16,26 @@ export const UserWrapper = ({ children }) => {
     )
 
     const [isLogin, setIsLogin] = useState(false);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+
         if (token) {
             setIsLogin(true);
         }
     }, []);
 
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
 
-    return <UserContext.Provider value={{ userDetails, setUserDetails, isLogin, setIsLogin }}>
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
+
+
+    return <UserContext.Provider value={{ userDetails, setUserDetails, isLogin, setIsLogin, user, setUser }}>
         {children}
     </UserContext.Provider>
 }

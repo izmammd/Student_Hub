@@ -29,7 +29,7 @@ const handleStdSignup = async (req, res) => {
 
         const handlePass = await bcrypt.hash(password, 10);
         const isCreated = await STD.create({ email, password: handlePass, name, age, role })
-        return res.status(201).json({ message: "Student account create successfully" });
+        return res.status(200).json({ message: "Student account create successfully" });
     }
     catch (err) {
         console.log(err);
@@ -39,7 +39,7 @@ const handleStdSignup = async (req, res) => {
 }
 
 const handleStdLogin = async (req, res) => {
-
+ 
     try {
         // console.log("req body", req.body);
         if (req.body == undefined) {

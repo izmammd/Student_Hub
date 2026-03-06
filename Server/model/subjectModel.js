@@ -2,9 +2,9 @@ const moongoose = require("mongoose");
 
 
 const subSchema = new moongoose.Schema({
-    subject : {type : String,require : true},
+    subject : {type : String,required : true},
     stdId : {type : moongoose.Schema.Types.ObjectId, ref : "std", required : true}
-
+ 
 });
 
 const SUBJECT = moongoose.model("subject" ,subSchema);

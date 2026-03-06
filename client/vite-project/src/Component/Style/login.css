@@ -43,7 +43,7 @@
     color: white;
     transition: 0.3s;
 }
-
+/* 
 .forgot-btn {
     width: 100%;
     padding: 10px;
@@ -52,8 +52,21 @@
     background: #0d6efd;
     color: white;
     transition: 0.3s;
-}
+} */
 
 .login-btn:hover {
     background: #084298;
+}
+
+.forgot-btn{
+    background:#ef4444;
+    color:white;
+    padding:10px;
+    border:none;
+    border-radius:6px;
+}
+
+.signup-text{
+    text-align:center;
+    margin-top:10px;
 }
