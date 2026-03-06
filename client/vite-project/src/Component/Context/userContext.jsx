@@ -17,25 +17,26 @@ export const UserWrapper = ({ children }) => {
 
     const [isLogin, setIsLogin] = useState(false);
     const [user, setUser] = useState(null);
+    const [isInitialized, setIsInitialized] = useState(false);
 
     useEffect(() => {
+        // Initialize auth state from localStorage on mount
         const token = localStorage.getItem("token");
+        const storedUser = localStorage.getItem("user");
 
         if (token) {
             setIsLogin(true);
         }
-    }, []);
-
-    useEffect(() => {
-        const storedUser = localStorage.getItem("user");
 
         if (storedUser) {
-            setUser(JSON.parse(storedUser));
+            setUser(storedUser);
         }
+
+        setIsInitialized(true);
     }, []);
 
 
-    return <UserContext.Provider value={{ userDetails, setUserDetails, isLogin, setIsLogin, user, setUser }}>
+    return <UserContext.Provider value={{ userDetails, setUserDetails, isLogin, setIsLogin, user, setUser, isInitialized }}>
         {children}
     </UserContext.Provider>
 }

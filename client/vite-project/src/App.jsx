@@ -13,8 +13,12 @@ import ForgotPassword from "./Component/Pages/ForgotPassword"
 
 function App() {
 
-  const token = localStorage.getItem("token");
-  const {isLogin} = useUser();
+  const {isLogin, isInitialized} = useUser();
+
+  // Wait for context to initialize before rendering
+  if (!isInitialized) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -23,7 +27,7 @@ function App() {
         <Toaster></Toaster>
         {isLogin && <Navbar />}
         <Routes>          
-          <Route path="/" element={token ? <Navigate to="/profile" /> : <Navigate to="/login" />}  ></Route>
+          <Route path="/" element={isLogin ? <Navigate to="/profile" /> : <Navigate to="/login" />}  ></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
