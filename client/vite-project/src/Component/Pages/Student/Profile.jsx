@@ -29,7 +29,7 @@ export default function Profile() {
 
         }
         catch (err) {
-            toast.error(err.response.data.message);
+            toast.error(err?.response?.data?.message || err.message || "Something went wrong");
             localStorage.removeItem("token");
             setIsLogin(false);
             navigate("/login");
