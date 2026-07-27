@@ -12,7 +12,7 @@ body {
 }
 
 /* Card */
-.profile-card {
+.profile-card { 
     border-radius: 20px;
     overflow: hidden;
     transition: 0.3s;
