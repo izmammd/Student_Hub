@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET || "JSP";
 
 const handleAuth = (req,res,next)=>{
 
@@ -13,7 +14,7 @@ const handleAuth = (req,res,next)=>{
             return res.status(401).json({message : "provide token"});
         }
 
-        const payload = jwt.verify(token,"JSP");
+        const payload = jwt.verify(token, JWT_SECRET);
 
         req.payload = payload;
 

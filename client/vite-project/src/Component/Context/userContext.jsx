@@ -16,7 +16,7 @@ export const UserWrapper = ({ children }) => {
     )
 
     const [isLogin, setIsLogin] = useState(false);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState("std");
     const [isInitialized, setIsInitialized] = useState(false);
 
     useEffect(() => {

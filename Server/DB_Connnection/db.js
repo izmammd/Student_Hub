@@ -1,14 +1,17 @@
 const mongoose = require("mongoose")
+require("dotenv").config();
 const connectDB = async () => {     // DB is asyn 
     try {
-        await mongoose.connect("mongodb+srv://STUDENT_HUB:STUDENTHUB@cluster0.xpoapd5.mongodb.net/")   // DB connect and connection
+        const MONGO_URI = process.env.MONGO_URI || process.env.DB || "mongodb://localhost:27017/std_hub";
+        await mongoose.connect(MONGO_URI);
 
         // await mongoose.connect("mongodb://localhost:27017/std_hub");
         console.log("DB Connected");
 
     }
     catch (err) {
-        console.log("DB not Connected");
+        console.error("DB not Connected", err.message);
+        process.exit(1);
 
     }
 }

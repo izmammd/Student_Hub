@@ -1,6 +1,8 @@
 const STD = require("../model/stdModel")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET || "JSP";
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "1h";
 
 
 const handleStdSignup = async (req, res) => {
@@ -64,7 +66,7 @@ const handleStdLogin = async (req, res) => {
             return res.status(400).json({ message: "invalid password" });
         }
 
-        const token = jwt.sign({ email, _id: isStd._id }, "JSP", { expiresIn: "1h" });
+        const token = jwt.sign({ email, _id: isStd._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 
         return res.status(200).json({ message: "Login successfull", token });
     }

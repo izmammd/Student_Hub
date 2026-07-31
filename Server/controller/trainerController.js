@@ -2,6 +2,8 @@ const TRAINNER = require("../model/trainnerModel");
 const STD = require("../model/stdModel")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET || "JSP";
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "1h";
 
 
 const handleTrainnerSignup =async (req,res) => {
@@ -23,7 +25,7 @@ const handleTrainnerSignup =async (req,res) => {
         }
 
         const handlePass = await bcrypt.hash(password, 10);
-        await TRAINNER.insertOne({name,email,age,password:handlePass,role})
+        await TRAINNER.create({name,email,age,password:handlePass,role})
 
         return res.status(200).json({message : "Account created successfully"})
 
@@ -61,7 +63,7 @@ const handleTrainnerLogin = async (req, res) => {
             return res.status(400).json({ message: "invalid password" });
         }
 
-        const token = jwt.sign({ email, _id: isTra.id }, "JSP", { expiresIn: "1h" });
+        const token = jwt.sign({ email, _id: isTra._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 
         return res.status(200).json({ message: "Login successfull", token });
     } catch (error) {

@@ -31,6 +31,12 @@ export default function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!user) {
+            toast.error("Please select std or trainner before signing up.");
+            return;
+        }
+
         try {
             const res = await axios.post(`http://localhost:3000/api/${user}/signup`, { email, name, age, password });
             toast.success(res.data.message);
@@ -39,7 +45,7 @@ export default function Signup() {
 
         }
         catch (err) {
-            toast.error(err.response.data.message);
+            toast.error(err.response?.data?.message || "Signup failed");
             // console.log(err.message);     
         }
 
