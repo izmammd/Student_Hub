@@ -15,7 +15,7 @@ export default function Subject() {
 
     const fetchAllSub = async () => {
         try {
-            let res = await axios.get("http://localhost:3000/api/std/subject/allsubject", {
+            let res = await axios.get("https://student-hub-rvpv.onrender.com/api/std/subject/allsubject", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -33,7 +33,7 @@ export default function Subject() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            let res = await axios.post("http://localhost:3000/api/std/subject/addsubject", { subject: sub }, {
+            let res = await axios.post("https://student-hub-rvpv.onrender.com/api/std/subject/addsubject", { subject: sub }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -50,7 +50,7 @@ export default function Subject() {
 
     const handleRemove = async (id) => {
         try {
-            const res = await axios.delete(`http://localhost:3000/api/std/subject/remove/${id}`, {
+            const res = await axios.delete(`https://student-hub-rvpv.onrender.com/api/std/subject/remove/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                     "Content-type": "application/json"
@@ -72,7 +72,7 @@ export default function Subject() {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.patch('http://localhost:3000/api/std/subject/updatesubject', { subject: sub, editId: edit }, {
+            const res = await axios.patch('https://student-hub-rvpv.onrender.com/api/std/subject/updatesubject', { subject: sub, editId: edit }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                     "Content-Type": "application/json",

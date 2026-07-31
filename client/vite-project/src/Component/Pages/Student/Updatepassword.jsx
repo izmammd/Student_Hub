@@ -27,7 +27,7 @@ export default function Updatepassword() {
         e.preventDefault();
         try {
             const token = localStorage.getItem("token")
-            let res = await axios.patch("http://localhost:3000/api/std/updatepassword",
+            let res = await axios.patch("https://student-hub-rvpv.onrender.com/api/std/updatepassword",
                 { password, newPassword },
                 {
                     headers: {

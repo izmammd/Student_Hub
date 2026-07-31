@@ -38,7 +38,7 @@ export default function Signup() {
         }
 
         try {
-            const res = await axios.post(`http://localhost:3000/api/${user}/signup`, { email, name, age, password });
+            const res = await axios.post(`https://student-hub-rvpv.onrender.com/api/${user}/signup`, { email, name, age, password });
             toast.success(res.data.message);
             navigate("/login");
             // console.log(res);

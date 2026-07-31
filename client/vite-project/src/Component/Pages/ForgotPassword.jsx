@@ -22,7 +22,7 @@ export default function ForgotPassword() {
     const handleVerifyEmail = async (e) => {
         e.preventDefault();
         try {
-            let res = await axios.post("http://localhost:3000/api/otp/emailverify", { email, role: user })
+            let res = await axios.post("https://student-hub-rvpv.onrender.com/api/otp/emailverify", { email, role: user })
             console.log(res.data);
             toast.success(res.data.message);
             setIsEmailVerified(true);
@@ -40,7 +40,7 @@ export default function ForgotPassword() {
         try {
             console.log(email, user);
 
-            let res = await axios.post("http://localhost:3000/api/otp/getotp", { email, role: user })
+            let res = await axios.post("https://student-hub-rvpv.onrender.com/api/otp/getotp", { email, role: user })
             toast.dismiss(toastId)
             toast.success(res.data.message)
             setStep(step + 1);
@@ -55,7 +55,7 @@ export default function ForgotPassword() {
         e.preventDefault();
 
         try {
-            let res = await axios.post("http://localhost:3000/api/otp/verifyotp", { otp, email });
+            let res = await axios.post("https://student-hub-rvpv.onrender.com/api/otp/verifyotp", { otp, email });
             setStep(step + 1);
             toast.success(res.data.message)
         }
@@ -68,7 +68,7 @@ export default function ForgotPassword() {
         e.preventDefault();
 
         try {
-            let res = await axios.post("http://localhost:3000/api/otp/updatepassword", { email, role: user, password })
+            let res = await axios.post("https://student-hub-rvpv.onrender.com/api/otp/updatepassword", { email, role: user, password })
             toast.success(res.data.message);
             navigate("/login");
         }

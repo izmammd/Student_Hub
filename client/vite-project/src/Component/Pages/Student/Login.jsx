@@ -35,7 +35,7 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            let res = await axios.post(`http://localhost:3000/api/${user}/login`, { email, password });
+            let res = await axios.post(`https://student-hub-rvpv.onrender.com/api/${user}/login`, { email, password });
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", user);
             toast.success(res.data.message);

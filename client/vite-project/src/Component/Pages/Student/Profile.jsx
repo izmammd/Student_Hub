@@ -17,7 +17,7 @@ export default function Profile() {
             return navigate("/login");
         }
         try {
-            let res = await axios.get(`http://localhost:3000/api/${user}/get`, {
+            let res = await axios.get(`https://student-hub-rvpv.onrender.com/api/${user}/get`, {
                 headers: {
                     // Authorization: `Bearer ${localStorage.getItem("token")}`,
                     Authorization : `Bearer ${token}`,
