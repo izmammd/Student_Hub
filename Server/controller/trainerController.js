@@ -87,6 +87,43 @@ const getTrainerDetails = async (req, res) => {
     }
 };
 
+const handleTrainnerUpdatePassword = async (req, res) => {
+    try {
+        const { _id } = req.payload;
+
+        const isTrainer = await TRAINNER.findById(_id);
+        if (!isTrainer) {
+            return res.status(401).json({ message: "token not valid because acc has been deleted" });
+        }
+
+        if (!req.body) {
+            return res.status(400).json({ message: "details are mandatory to update Trainer password" });
+        }
+
+        const { password, newPassword } = req.body;
+        if (!password || !newPassword) {
+            return res.status(400).json({ message: "input field cannot be empty" });
+        }
+
+        const isMatched = await bcrypt.compare(password, isTrainer.password);
+        if (!isMatched) {
+            return res.status(401).json({ message: "you entered incorrect password" });
+        }
+
+        if (password === newPassword) {
+            return res.status(400).json({ message: "Password cannot be same as Old Password" });
+        }
+
+        const handleNewPass = await bcrypt.hash(newPassword, 10);
+        isTrainer.password = handleNewPass;
+        await isTrainer.save();
+
+        return res.status(200).json({ message: "Trainer password updated successfully" });
+    } catch (err) {
+        return res.status(500).json({ message: "Internal Server Error in Trainer password update" });
+    }
+};
+
 const getAllStd=async(req,res)=>{
     try {
         const stds=await STD.find({},{password:0});
@@ -96,4 +133,4 @@ const getAllStd=async(req,res)=>{
     }
 }
 
-module.exports = { handleTrainnerLogin, handleTrainnerSignup, getTrainerDetails,getAllStd };
+module.exports = { handleTrainnerLogin, handleTrainnerSignup, getTrainerDetails, handleTrainnerUpdatePassword, getAllStd };

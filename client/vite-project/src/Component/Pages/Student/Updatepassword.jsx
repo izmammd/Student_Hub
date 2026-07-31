@@ -27,12 +27,18 @@ export default function Updatepassword() {
         e.preventDefault();
         try {
             const token = localStorage.getItem("token")
-            let res = await axios.patch("https://student-hub-rvpv.onrender.com/api/std/updatepassword",
+            if (!token) {
+                toast.error("Please login before updating password.");
+                navigate("/login");
+                return;
+            }
+
+            const role = localStorage.getItem("user") || "std";
+            const res = await axios.patch(`https://student-hub-rvpv.onrender.com/api/${role}/updatepassword`,
                 { password, newPassword },
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
-                        // Authorization: `Bearer ${localStorage.getItem("token")}`
                     }
                 }
             );
